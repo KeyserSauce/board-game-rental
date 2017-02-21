@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class GamesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: :home
   before_action :set_game, only: [:show, :edit, :update]
 
   def new
@@ -21,7 +21,7 @@ class GamesController < ApplicationController
 
   end
 
-  def index
+  def home
     @games = Game.all
 
     if params[:search]
@@ -33,6 +33,10 @@ class GamesController < ApplicationController
 
   def show
     @rental = Rental.new
+  end
+
+  def index
+    @games = Game.all
   end
 
   private

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'results/show'
 
-  root to: 'games#index'
+  root to: 'games#home'
 
   mount Attachinary::Engine => "/attachinary"
 
