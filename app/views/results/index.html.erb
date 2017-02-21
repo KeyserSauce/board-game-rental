@@ -1,0 +1,20 @@
+<% if @game_results.present? %>
+<h2>Here are your results</h2>
+  <% @game_results.each do |result| %>
+    <div>
+      <%= link_to result do %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url(http://unsplash.com)">
+      <div class="card-description">
+        <h2><%= result.name %></h2>
+        <p><%= result.price %> €/per day</p>
+      </div>
+    </div>
+    <% end %>
+    </div>
+<% end %>
+
+
+<% else %>
+  <p>There are no games containing the term(s) <%= params[:search] %>.</p>
+<% end %>
