@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class GamesController < ApplicationController
 
   before_action :set_game, only: [:show, :edit, :update]
@@ -7,13 +9,16 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
-    @game.user = current_user
+    @game             = Game.new(game_params)
+    @game.user        = current_user
+    @game.description = get_description(game_params[:url])
+
     if @game.save
-      redirect_to root_path
+      redirect_to game_path(@game)
     else
       render :new
     end
+
   end
 
   def index
@@ -29,6 +34,12 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:name, :price, :description)
+    params.require(:game).permit(:name, :price, :url, :description)
   end
+
+  def get_description(url)
+    doc = Nokogiri::HTML(open(url))
+    description = doc.css('p')[0].text.gsub(/\[.\]/,"") + doc.css('p')[1].text.gsub(/\[.\]/,"")
+  end
+
 end

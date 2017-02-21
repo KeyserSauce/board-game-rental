@@ -197,6 +197,7 @@ DEPENDENCIES
   jquery-rails
   jquery-slick-rails
   listen (~> 3.0.5)
+  nokogiri
   pg
   pry-byebug
   pry-rails
