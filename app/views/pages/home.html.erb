@@ -1,1 +1,5 @@
- <%= render 'shared/banner' %>
+   <% content_for(:title) do %>
+      <% "Welcome" %>
+      <% end %>
+   <%= render 'shared/banner' %>
+   <%= render 'shared/card' %>
