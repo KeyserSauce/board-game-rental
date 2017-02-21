@@ -8,7 +8,7 @@ $(function() {
 
   $("#getstarted").click(function() {
     $('index.html,body').animate({
-      scrollTop: $("#signup").offset().top},
+      scrollTop: $("#game_display").offset().top},
       'slow');
   });
 
@@ -18,7 +18,7 @@ $(function() {
     slidesToShow: 2,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '60px',
+    centerPadding: '0px',
     dots: true,
     arrows: true
   });

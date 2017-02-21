@@ -1,39 +1,42 @@
 <div class="container padding card_background">
+  <h1 style="padding-bottom: 20px;">Trending Games</h1>
+  <div class="your-class" id="game_display">
+      <% @games.each do |game| %>
+      <div>
+      <%= link_to game do %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url(http://unsplash.com)">
+      <div class="card-description">
+        <h2><%= game.name %></h2>
+        <p><%= game.price %> €/per day</p>
+      </div>
+      <a class="card-link" href="#" ></a>
+    </div>
+    <% end %>
+    </div>
+    <% end %>
+</div>
+
+<h1 style="padding-bottom: 20px;">Family Games</h1>
   <div class="your-class">
-  <div>
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-      <div class="card-category">Popular</div>
+      <% @games.each do |game| %>
+      <div>
+      <%= link_to game do %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url(http://unsplash.com)">
+
       <div class="card-description">
-        <h2>Some game</h2>
-        <p>Very cool game, useful and smart</p>
+        <h2><%= game.name %></h2>
+        <p><%= game.price %> €/per day</p>
       </div>
-      <img class="card-user avatar" src="user.jpg">
       <a class="card-link" href="#" ></a>
     </div>
-  </div>
-  <div>
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-      <div class="card-category">Popular</div>
-      <div class="card-description">
-        <h2>Some game</h2>
-        <p>Very cool game, useful and smart</p>
-      </div>
-      <img class="card-user avatar" src="user.jpg">
-      <a class="card-link" href="#" ></a>
+    <% end %>
     </div>
-  </div>
-  <div>
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-      <div class="card-category">Popular</div>
-      <div class="card-description">
-        <h2>Some game</h2>
-        <p>Very cool game, useful and smart</p>
-      </div>
-      <img class="card-user avatar" src="user.jpg">
-      <a class="card-link" href="#" ></a>
-    </div>
-  </div>
+    <% end %>
 </div>
+
+
 </div>
 
 
@@ -43,86 +46,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--   <div class="container" id="games">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-4 padding">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2>Some game</h2>
-            <p>Very cool game, useful and smart</p>
-          </div>
-          <img class="card-user avatar" src="user.jpg">
-          <a class="card-link" href="#" ></a>
-        </div>
-      </div>
-    </div>
-  </div> -->

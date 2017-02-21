@@ -1,3 +1,11 @@
 .slick-prev:before, .slick-next:before {
     color: #ADCAD6 !important;
 }
+
+  .slick-slide {
+    margin: 0 20px;
+  }
+  /* the parent */
+  .slick-list {
+    margin: 0 -20px;
+  }
