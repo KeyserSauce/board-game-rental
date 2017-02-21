@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'games#index'
 
+  mount Attachinary::Engine => "/attachinary"
+
   resources :games, only: [:new, :create, :show, :index]
   resources :profilers, only: [:show]
 
