@@ -3,14 +3,14 @@
   <div class="your-class" id="game_display">
       <% @games.each do |game| %>
       <div>
-      <%= link_to game do %>
+      <%= link_to game_path(game) do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
       url(http://unsplash.com)">
       <div class="card-description">
         <h2><%= game.name %></h2>
         <p><%= game.price %> €/per day</p>
       </div>
-      <a class="card-link" href="#" ></a>
+      <!-- <a class="card-link" href="#" ></a> -->
     </div>
     <% end %>
     </div>
@@ -21,7 +21,7 @@
   <div class="your-class">
       <% @games.each do |game| %>
       <div>
-      <%= link_to game do %>
+      <%= link_to game_path(game) do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
       url(http://unsplash.com)">
 
@@ -29,7 +29,7 @@
         <h2><%= game.name %></h2>
         <p><%= game.price %> €/per day</p>
       </div>
-      <a class="card-link" href="#" ></a>
+      <!-- <a class="card-link" href="#" ></a> -->
     </div>
     <% end %>
     </div>

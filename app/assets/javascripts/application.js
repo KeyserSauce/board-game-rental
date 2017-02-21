@@ -23,6 +23,8 @@ $(function() {
     arrows: true
   });
 
+  $('#rental').datepicker();
+
 });
 
 

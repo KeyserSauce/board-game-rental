@@ -1,2 +1,35 @@
-<h1> <%= @game.name %> </h1>
-<h3> <%= @game.description %> </h3>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-9">
+      <h1> <%= @game.name %> </h1>
+      <h4> <%= @game.description %> </h4>
+    </div>
+    <div class="col-xs-12 col-md-3 offset-md-6 rental-box">
+      <div class="row">
+        <div class="col-md-8 rental-box-top rental-box-top-price">
+          <%= @game.price %>
+        </div>
+        <div class="col-md-4 rental-box-top" style="padding: 15.5px;">
+          <span> Per Day </span>
+        </div>
+      </div>
+      <br>
+
+      <%= simple_form_for [@rental] do |f| %>
+
+        <%= f.input :start_date, as: :string, input_html: { class: "datepicker" } %>
+        <%= f.input :end_date, as: :string, input_html: { class: "datepicker" } %>
+        <%= f.hidden_field :game_id, value: @game.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
