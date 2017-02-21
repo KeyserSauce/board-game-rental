@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :games, only: [:new, :create, :show, :index]
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'games#index'
 end
