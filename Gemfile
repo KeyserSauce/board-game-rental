@@ -16,10 +16,13 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'faker'
+gem 'nokogiri'
 
 # my gems
 gem 'devise'
 gem "jquery-slick-rails"
+gem 'omniauth-facebook'
+
 
 
 group :development, :test do
