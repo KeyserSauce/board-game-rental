@@ -1,5 +1,26 @@
 <h1>Welcome to your profile page</h1>
 
 <h3>Your registered email address: <%= current_user.email %> </h3>
+
+<div class="container">
+<div class="row">
+
+      <% (current_user.games).each do |game| %>
+      <div class="col-xs-12 col-sm-4">
+      <%= link_to game do %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url(http://unsplash.com)">
+      <div class="card-description">
+        <h2><%= game.name %></h2>
+        <p><%= game.price %> €/per day</p>
+      </div>
+    </div>
+    <% end %>
+    </div>
+    <% end %>
+    </div>
+    </div>
+
+
 <h3>Haha sorry we do not have any more information (working on it)</h3>
 
