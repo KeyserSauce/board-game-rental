@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :games, only: [:new, :create, :show, :index]
   resources :profilers, only: [:show]
+  resources :settings, only: [:show]
 
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
