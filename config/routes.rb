@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  # get 'games/index'
-
-  # get 'games/show'
+  root to: 'games#index'
 
   resources :games, only: [:new, :create, :show, :index]
 
-  devise_for :users
-  root to: 'games#index'
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end

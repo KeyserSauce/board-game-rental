@@ -20,6 +20,8 @@ gem 'faker'
 # my gems
 gem 'devise'
 gem "jquery-slick-rails"
+gem 'omniauth-facebook'
+
 
 
 group :development, :test do
