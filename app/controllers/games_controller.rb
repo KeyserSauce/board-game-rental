@@ -23,6 +23,12 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+
+    if params[:search]
+      @game_results = Game.search(params[:search]).order("created_at DESC")
+    else
+      @game_results = Game.all.order('created_at DESC')
+    end
   end
 
   def show
