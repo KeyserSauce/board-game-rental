@@ -2,10 +2,10 @@
 
 
 <div class="container padding">
-<div class="row">
+  <div class="row">
 
-      <% (current_user.games).each do |game| %>
-      <div class="col-xs-12 col-sm-4">
+    <% (current_user.games).each do |game| %>
+    <div class="col-xs-12 col-sm-1" style="border: 2px">
       <%= link_to game do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
       url(http://unsplash.com)">
@@ -15,9 +15,9 @@
       </div>
     </div>
     <% end %>
-    </div>
-    <% end %>
-    </div>
-    </div>
+  </div>
+  <% end %>
+</div>
+</div>
 
 
