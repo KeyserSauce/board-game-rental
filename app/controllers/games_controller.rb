@@ -32,6 +32,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @rental = Rental.new
   end
 
   private
@@ -41,7 +42,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:name, :price, :url, :description)
+    params.require(:game).permit(:name, :price, :url, :description, :photo)
   end
 
   def get_description(url)
