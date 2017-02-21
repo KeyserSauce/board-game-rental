@@ -1,11 +1,11 @@
 <div class="container padding card_background">
   <h1 style="padding-bottom: 20px;">Trending Games</h1>
   <div class="your-class" id="game_display">
-      <% @games.each do |game| %>
-      <div>
+    <% @games.each do |game| %>
+    <div>
       <%= link_to game do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url(http://unsplash.com)">
+      url('<%= cl_image_path game.photo.path, height: 500, width: 500 %>')">
       <div class="card-description">
         <h2><%= game.name %></h2>
         <p><%= game.price %> €/per day</p>
@@ -13,30 +13,28 @@
       <a class="card-link" href="#" ></a>
     </div>
     <% end %>
-    </div>
-    <% end %>
+  </div>
+  <% end %>
 </div>
 
 <h1 style="padding-bottom: 20px;">Family Games</h1>
-  <div class="your-class">
-      <% @games.each do |game| %>
-      <div>
-      <%= link_to game do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url(http://unsplash.com)">
+<div class="your-class">
+  <% @games.each do |game| %>
+  <div>
+    <%= link_to game do %>
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+    url('<%= cl_image_path game.photo.path, height: 500, width: 500 %>')">
 
-      <div class="card-description">
-        <h2><%= game.name %></h2>
-        <p><%= game.price %> €/per day</p>
-      </div>
-      <a class="card-link" href="#" ></a>
+    <div class="card-description">
+      <h2><%= game.name %></h2>
+      <p><%= game.price %> €/per day</p>
     </div>
-    <% end %>
-    </div>
-    <% end %>
+    <a class="card-link" href="#" ></a>
+  </div>
+  <% end %>
 </div>
-
-
+<% end %>
+</div>
 </div>
 
 
