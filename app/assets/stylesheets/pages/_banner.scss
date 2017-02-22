@@ -26,3 +26,18 @@
 #primary-search {
   padding: 5 5 5 5;
 }
+
+.btn-treehouse {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #469AE0;
+  transition: background 0.3s ease;
+}
+.btn-treehouse:hover {
+  opacity: 1;
+  background: transparent;
+  text-decoration: none;
+  color: white;
+}
