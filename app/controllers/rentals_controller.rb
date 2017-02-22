@@ -31,6 +31,7 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @rental.status = params[:id]
     @rental.save!
+    redirect_to profiler_path(current_user.id)
   end
 
 
