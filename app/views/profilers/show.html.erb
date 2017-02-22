@@ -5,27 +5,23 @@
 <br>
 <br>
 
-<% if current_user.rentals.where(status: "pending").where(user_id: current_user.id).count > 0 %>
+<h3 style="margin-left: 50px"><strong> Rentals waiting your approval: </strong></h3>
+<% Rental.where(status: "pending").each do |rental| %>
+  <% if rental.game.user.id == current_user.id %>
+    <div class="container">
+      <ul>
+        <li>
+          <% username = User.find(rental.user.id).email  %>
+          <% game_name = Game.find(rental.game.id).name  %>
 
-  <div class="container">
-    <h3><strong> Rentals waiting your approval: </strong></h3>
-    <% current_user.rentals.where(status: "pending").where(user_id: current_user.id).each do |rental| %>
-    <ul>
-      <li>
-        <% username = User.find(rental.user.id).email  %>
-        <% game_name = Game.find(rental.game.id).name  %>
-
-        <strong> <%= "#{username}" %> </strong> would like to rent <strong> <%= game_name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
-        <br>
-        <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
-        <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
-      </li>
-    </ul>
-
-    <% end %>
-
-  </div>
-
+          <strong> <%= "#{username}" %> </strong> would like to rent <strong> <%= game_name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
+          <br>
+          <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
+          <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
 
 
