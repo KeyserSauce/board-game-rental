@@ -27,7 +27,7 @@ $(function() {
     arrows: true
   });
 
-  $('#rental').datepicker();
+  // $('#rental').datepicker();
 
 });
 
