@@ -1,0 +1,34 @@
+<% letters  = [] %>
+<% games    = [] %>
+<% @games.each { |game| letters << game.name.chars.first.downcase && games << game.name } %>
+<% letters.uniq! %>
+<% letters.sort! %>
+
+
+<% letters.each do |letter| %>
+
+<div class="container">
+<h1> <%= letter.upcase %> </h1>
+<% @games.each do |game| %>
+<% if game.name.chars.first.downcase == letter %>
+  <% unless games.index(game.name.downcase) %>
+    <div class="col-xs-12 col-sm-2">
+      <%= link_to game do %>
+      <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),url(https://unsplash.it/200/300/?random)">
+        <div class="card-description">
+          <h2><%= game.name %></h2>
+          <p><%= game.price %> €/per day</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% games << game.name.downcase %>
+<% end %>
+
+<% end %>
+
+
+<% end %>
+</div>
+
+<% end %>

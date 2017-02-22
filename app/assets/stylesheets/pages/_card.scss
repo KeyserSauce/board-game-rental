@@ -50,3 +50,17 @@
 .card_background{
   background-color: white;
 }
+
+.game-name {
+  color: white;
+  font-size: 30px;
+}
+
+.card-index {
+  height: 150px;
+  width: 150px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+}
