@@ -2,10 +2,9 @@ class Game < ApplicationRecord
   has_attachment :photo
   has_many :rentals
   has_many :users, through: :rentals
+  belongs_to :user
 
   CATEGORIES = ["family", "card", "german", "children", "drinking", "group"]
-
-  belongs_to :user
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
