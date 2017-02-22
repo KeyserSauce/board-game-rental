@@ -1,7 +1,7 @@
 .banner {
   color: white;
   text-align: center;
-  height: 100vh;
+  height: 500px;
   background-size: cover !important;
   display: flex;
   align-items: center;
@@ -17,6 +17,12 @@
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 50px;
-    }
+  }
+}
+.search-form-banner {
+  color: black;
 }
 
+#primary-search {
+  padding: 5 5 5 5;
+}
