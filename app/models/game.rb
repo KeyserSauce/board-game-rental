@@ -12,7 +12,7 @@ class Game < ApplicationRecord
 
 
   def self.search(search)
-  where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%")
+    where("name ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%")
   end
 
 end

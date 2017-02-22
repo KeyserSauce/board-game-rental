@@ -1,12 +1,38 @@
-  <h1>Welcome to your Dashboard</h1>
+<h1 style="margin-left: 25px">Welcome to your Dashboard</h1>
 
-<%= current_user.email %>
+<h4 style="margin-left: 25px"> <%= current_user.email %> </h4>
+<br>
+<br>
+<br>
+
+<% if current_user.rentals.where(status: "pending").where(user_id: current_user.id).count > 0 %>
+
+  <div class="container">
+    <h3><strong> Rentals waiting your approval: </strong></h3>
+    <% current_user.rentals.where(status: "pending").where(user_id: current_user.id).each do |rental| %>
+    <ul>
+      <li>
+        <% username = User.find(rental.user.id).email  %>
+        <% game_name = Game.find(rental.game.id).name  %>
+
+        <strong> <%= "#{username}" %> </strong> would like to rent <strong> <%= game_name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
+        <br>
+        <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
+        <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
+      </li>
+    </ul>
+
+    <% end %>
+
+  </div>
+
+<% end %>
 
 
   <div class="container">
     <div class="row">
     <h3><strong>Your currently rented games:</strong></h3>
-    <% current_user.rentals.each do |rental| %>
+    <% current_user.rentals.where(status: "active").each do |rental| %>
       <div class="col-xs-12 col-sm-2">
         <%= link_to game_path(rental.game) do %>
         <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
@@ -14,6 +40,7 @@
         <div class="card-description">
           <h2 class="game-name"><%= rental.game.name %></h2>
           <p><%= rental.game.price %> €/per day</p>
+          <p>OwnerID: <%= rental.game.user.id %> </p>
         </div>
       </div>
       <% end %>
@@ -51,6 +78,19 @@
 <div class="container">
   <div class="row">
     <h3><strong>games currently rented out:</strong></h3>
+        <% @outrented.each do |game| %>
+        <div class="col-xs-12 col-sm-2">
+        <%= link_to game_path(game) do %>
+        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+        url('<%= cl_image_path game.photo.path %>')">
+        <div class="card-description">
+          <h2 class="game-name"><%= game.name %></h2>
+          <p><%= game.price %> €/per day</p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>
 
