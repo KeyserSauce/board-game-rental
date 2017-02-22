@@ -4,7 +4,7 @@
     <div>
       <%= link_to result do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url(http://unsplash.com)">
+      url('<%= cl_image_path result.photo.path, height: 500, width: 500 %>')">
       <div class="card-description">
         <h2><%= result.name %></h2>
         <p><%= result.price %> €/per day</p>
