@@ -51,8 +51,8 @@ class GamesController < ApplicationController
   end
 
   def get_description(url)
-    doc = Nokogiri::HTML(open(url))
-    description = doc.css('p')[0].text.gsub(/\[.\]/,"") + doc.css('p')[1].text.gsub(/\[.\]/,"")
+    url.match(/ /) || url.empty? ? description = url : doc = Nokogiri::HTML(open(url)) && description = doc.css('p')[0].text.gsub(/\[.\]/,"") + doc.css('p')[1].text.gsub(/\[.\]/,"")
+    description
   end
 
 end

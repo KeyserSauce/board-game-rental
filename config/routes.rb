@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :rentals, only: [:new, :create, :show]
 
   resources :profilers, only: [:show]
+    resources :rentals, only: [:update]
+
   resources :settings, only: [:show]
   resources :results, only: [:index]
 

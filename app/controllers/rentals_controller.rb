@@ -28,6 +28,9 @@ class RentalsController < ApplicationController
 
 
   def update
+    @rental = Rental.find(params[:id])
+    @rental.status = params[:id]
+    @rental.save!
   end
 
 
