@@ -2,8 +2,12 @@
       <div class="banner-content">
         <h1>Board Game Rental</h1>
         <p>Play games you love or try out new ones</p>
-        <form action="#" class="form-inline">
-          <input type="submit" class="btn btn-primary btn-lg" value="Get me started" id="getstarted">
-        </form>
+
+        <div class="search-form-banner">
+          <%= form_tag(results_path, :method => "get", id: "search-form-for-banner") do %>
+          <%= text_field_tag 'search', nil, placeholder: "Search for a game", id: "primary-search"  %>
+          <%= submit_tag "Search", class: "btn btn-primary"%>
+          <% end %>
+        </div>
       </div>
     </div>

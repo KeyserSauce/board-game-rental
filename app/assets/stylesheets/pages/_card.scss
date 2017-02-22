@@ -18,6 +18,7 @@
   text-transform: uppercase;
 }
 .card-description {
+  color: white;
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -62,4 +63,7 @@
   background-size: cover !important;
   color: white;
   position: relative;
+  border-radius: 2px;
+  box-shadow: 0px 2px grey;
+  margin-bottom: 25px;
 }
