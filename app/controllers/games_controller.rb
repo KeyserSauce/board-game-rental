@@ -10,7 +10,7 @@ class GamesController < ApplicationController
 
   def create
     @game             = Game.new(game_params)
-    @game.name        = game_params[:name].capitalize!
+    @game.name        = @game.name.capitalize
     @game.user        = current_user
     @game.description = get_description(game_params[:url])
 

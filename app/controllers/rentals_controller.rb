@@ -19,6 +19,7 @@ class RentalsController < ApplicationController
     game          = Game.find(params[:rental][:game_id])
     user          = User.find(params[:rental][:user_id])
     Rental.create(start_date: start_date, end_date: end_date, game: game, user: user)
+    redirect_to profiler_path(user)
   end
 
 
