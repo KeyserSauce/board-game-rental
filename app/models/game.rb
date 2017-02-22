@@ -1,5 +1,7 @@
 class Game < ApplicationRecord
   has_attachment :photo
+  has_many :rentals
+  has_many :users, through: :rentals
 
   CATEGORIES = ["family", "card", "german", "children", "drinking", "group"]
 
