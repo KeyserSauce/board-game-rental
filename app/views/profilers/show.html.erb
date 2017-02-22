@@ -14,6 +14,7 @@
         <div class="card-description">
           <h2 class="game-name"><%= rental.game.name %></h2>
           <p><%= rental.game.price %> €/per day</p>
+          <p>OwnerID: <%= rental.game.user.id %> </p>
         </div>
       </div>
       <% end %>
@@ -51,6 +52,19 @@
 <div class="container">
   <div class="row">
     <h3><strong>games currently rented out:</strong></h3>
+        <% @outrented.each do |game| %>
+        <div class="col-xs-12 col-sm-2">
+        <%= link_to game_path(game) do %>
+        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+        url('<%= cl_image_path game.photo.path %>')">
+        <div class="card-description">
+          <h2 class="game-name"><%= game.name %></h2>
+          <p><%= game.price %> €/per day</p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>
 
