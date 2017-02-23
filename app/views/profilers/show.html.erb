@@ -5,7 +5,7 @@
 <br>
 
 
-<div class="container">
+<div class="container profilers-card">
   <div class="row">
 
     <% unless @pending_rentals.empty? %>
@@ -26,7 +26,7 @@
 </div>
 
 
-<div class="container">
+<div class="container profilers-card">
   <div class="row">
 
     <% unless @current_rentals.empty? %>
@@ -50,7 +50,7 @@
 </div>
 
 
-<div class="container" id="">
+<div class="container profilers-card" id="">
   <div class="row">
     <% unless @user_games.empty? %>
     <h3><strong>Your games:</strong></h3>
@@ -71,7 +71,7 @@
 </div>
 </div>
 
-<div class="container">
+<div class="container profilers-card">
   <div class="row">
     <% unless @outrented_games.empty? %>
     <h3><strong>games currently rented out:</strong></h3>
@@ -91,3 +91,5 @@
   <% end %>
 </div>
 </div>
+<br>
+
