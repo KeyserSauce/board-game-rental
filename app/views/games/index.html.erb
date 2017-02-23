@@ -8,28 +8,12 @@
   <h1>Index of all games</h1>
 </div>
 <br>
-<div>
-<h3>Filter by
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Category
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#" id="family">family</a></li>
-    <li><a href="#" id="card">card</a></li>
-    <li><a href="#" id="german">german</a></li>
-    <li><a href="#" id="children">children</a></li>
-    <li><a href="#" id="drinking">drinking</a></li>
-    <li><a href="#" id="group">group</a></li>
-  </ul>
-</div></h3>
-</div>
+
 
 <% letters.each do |letter| %>
 
-<div class="container">
-<div class="index-letter col-xs-12 col-sm-2"> <%= letter.upcase %> </div>
+<div class="container" style="margin-left: 1vh">
+<div id="<%= letter %>" class="index-letter col-xs-12 col-sm-2"> <%= letter.upcase %> </div>
 <br>
 <% @games.each do |game| %>
   <% if game.name.chars.first.downcase == letter %>
@@ -37,7 +21,7 @@
       <div class="col-xs-12 col-sm-2">
         <%= link_to game do %>
 
-        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)),url('<%= cl_image_path game.photo.path %>')">
+        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)),url('<%= cl_image_path game.photo.path %>')" data-category="<%= game.category %>" data-name="<%= game.name %>">
 
           <div class="card-description">
             <h2><%= game.name %></h2>
@@ -54,17 +38,40 @@
 
 <% end %>
 
+<div>
+<h3>Filter by
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Category
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a id="family">family</a></li>
+    <li><a id="card">card</a></li>
+    <li><a id="german">german</a></li>
+    <li><a id="children">children</a></li>
+    <li><a id="drinking">drinking</a></li>
+    <li><a id="group">group</a></li>
+  </ul>
+</div></h3>
+</div>
+
 <% content_for(:after_js) do %>
 
 <script>
   $(document).ready(function () {
 
     $('#drinking').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
         console.log($(this).data())
         if ($(this).data().category != 'drinking' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });
@@ -72,55 +79,84 @@
 
 
     $('#family').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
         console.log($(this).data())
         if ($(this).data().category != 'family' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });
 
 
     $('#card').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
         console.log($(this).data())
         if ($(this).data().category != 'card' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });
+
 
 
     $('#german').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
-        console.log($(this).data())
+        console.log($(this).text())
         if ($(this).data().category != 'german' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });
+
 
 
     $('#children').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
-        console.log($(this).data())
+        console.log($(this).text())
         if ($(this).data().category != 'children' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });
 
 
+
     $('#group').click(function () {
+      $('.index-letter').hide();
       $('.card-index').each(function() {
         console.log($(this).data())
         if ($(this).data().category != 'group' ) {
           $(this).hide()
-          $(this).parent().parent().prev().prev().hide()
+        }
+        else {
+          $(this).show();
+          var letter = $(this).data().name.charAt(0).toLowerCase();
+          $('#' + letter).show();
         }
       });
     });

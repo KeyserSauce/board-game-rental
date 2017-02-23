@@ -4,6 +4,6 @@ class Rental < ApplicationRecord
 
   STATUSES = ["pending", "declined", "active"]
 
-  # validates :status, inclusion: { in: ["pending", "declined", "active"] }
+  validates :status, inclusion: { in: [ "pending", "declined", "active" ] }
 
 end

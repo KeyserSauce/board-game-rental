@@ -14,7 +14,7 @@
       <% @pending_rentals.each do |rental| %>
       <li>
 
-        <strong> <%= "#{rental.user.username}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
+        <strong> <%= "#{rental.user.email}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
         <br>
         <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
         <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
@@ -74,7 +74,7 @@
 <div class="container profilers-card">
   <div class="row">
     <% unless @outrented_games.empty? %>
-    <h3><strong>games currently rented out:</strong></h3>
+    <h3><strong>Your games currently rented out:</strong></h3>
     <% @outrented_games.each do |game| %>
     <div class="col-xs-12 col-sm-4 col-md-2">
       <%= link_to game_path(game) do %>
