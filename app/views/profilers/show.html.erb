@@ -4,49 +4,46 @@
 <br>
 <br>
 
+<% unless @pending_owned_rentals.empty? %>
+  <div class="container profilers-card">
+    <div class="row">
+      <h3 ><strong> Rentals awaiting your approval: </strong></h3>
+      <ul>
+        <% @pending_owned_rentals.each do |rental| %>
+          <li>
 
-<div class="container profilers-card">
-  <div class="row">
-
-    <% unless @pending_rentals.empty? %>
-    <h3 ><strong> Rentals awaiting your approval: </strong></h3>
-    <ul>
-      <% @pending_rentals.each do |rental| %>
-      <li>
-
-        <strong> <%= "#{rental.user.email}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
-        <br>
-        <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
-        <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
-      </li>
-    </ul>
-    <% end %>
-    <% end %>
-  </div>
-</div>
-
-
-<div class="container profilers-card">
-  <div class="row">
-
-    <% unless @current_rentals.empty? %>
-    <h3><strong>Your currently rented games:</strong></h3>
-    <% @current_rentals.each do |rental| %>
-    <div class="col-xs-12 col-sm-4 col-md-2">
-      <%= link_to game_path(rental.game) do %>
-      <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url('<%= cl_image_path rental.game.photo.path %>')">
-      <div class="card-description">
-        <h2 class="game-name"><%= rental.game.name %></h2>
-        <p><%= rental.game.price %> €/per day</p>
-        <p>OwnerID: <%= rental.game.user.id %> </p>
-      </div>
+            <strong> <%= "#{rental.user.email}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
+            <br>
+            <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
+            <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
+  </div>
+<% end %>
+
+
+
+<div class="container profilers-card">
+  <div class="row">
+    <% unless @current_rentals.empty? %>
+      <h3><strong> Your currently rented games: </strong></h3>
+      <% @current_rentals.each do |rental| %>
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <%= link_to game_path(rental.game) do %>
+            <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path rental.game.photo.path %>')">
+              <div class="card-description">
+                <h2 class="game-name"><%= rental.game.name %></h2>
+                <p><%= rental.game.price %> €/per day</p>
+                <p>Owner: <%= rental.game.user.email.split("@").first %> </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
-  <% end %>
-  <% end %>
-</div>
 </div>
 
 
