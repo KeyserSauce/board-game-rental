@@ -25,32 +25,32 @@
 <% end %>
 
 
-  <div class="container">
-    <div class="row">
-    <h3><strong>Your currently rented games:</strong></h3>
-    <% current_user.rentals.where(status: "active").each do |rental| %>
-      <div class="col-xs-12 col-sm-2">
-        <%= link_to game_path(rental.game) do %>
-        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-        url('<%= cl_image_path rental.game.photo.path %>')">
-        <div class="card-description">
-          <h2 class="game-name"><%= rental.game.name %></h2>
-          <p><%= rental.game.price %> €/per day</p>
-          <p>OwnerID: <%= rental.game.user.id %> </p>
-        </div>
+<div class="container">
+  <div class="row">
+  <h3><strong>Your currently rented games:</strong></h3>
+  <% current_user.rentals.where(status: "active").each do |rental| %>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <%= link_to game_path(rental.game) do %>
+      <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url('<%= cl_image_path rental.game.photo.path %>')">
+      <div class="card-description">
+        <h2 class="game-name"><%= rental.game.name %></h2>
+        <p><%= rental.game.price %> €/per day</p>
+        <p>OwnerID: <%= rental.game.user.id %> </p>
       </div>
-      <% end %>
-      </div>
+    </div>
     <% end %>
     </div>
+  <% end %>
   </div>
+</div>
 
 
 <div class="container" id="">
   <div class="row">
   <h3><strong>Your games:</strong></h3>
         <% current_user.games.each do |game| %>
-        <div class="col-xs-12 col-sm-2">
+        <div class="col-xs-12 col-sm-4 col-md-2">
         <%= link_to game_path(game) do %>
         <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
         url('<%= cl_image_path game.photo.path %>')">
@@ -69,7 +69,7 @@
   <div class="row">
     <h3><strong>games currently rented out:</strong></h3>
         <% @outrented.each do |game| %>
-        <div class="col-xs-12 col-sm-2">
+        <div class="col-xs-12 col-sm-4 col-md-2">
         <%= link_to game_path(game) do %>
         <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
         url('<%= cl_image_path game.photo.path %>')">
@@ -84,23 +84,5 @@
   </div>
 </div>
 
-<!--   <div class="container padding">
-    <div class="row">
 
-      <% (current_user.games).each do |game| %>
-      <div class="col-xs-12 col-sm-1" style="border: 2px">
-        <%= link_to game do %>
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-        url('<%= cl_image_path game.photo.path, height: 500, width: 500 %>')">
-        <div class="card-description">
-          <h2><%= game.name %></h2>
-          <p><%= game.price %> €/per day</p>
-          </div>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
- -->
 
