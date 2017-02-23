@@ -1,18 +1,20 @@
 <% if @game_results.present? %>
-<h2>Here are your results</h2>
-  <% @game_results.each do |result| %>
-    <div>
-      <%= link_to result do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url('<%= cl_image_path result.photo.path, height: 500, width: 500 %>')">
-      <div class="card-description">
-        <h2><%= result.name %></h2>
-        <p><%= result.price %> €/per day</p>
+<div class="container">
+  <h2 class="text-center" >Here are your search results</h2>
+    <% @game_results.each do |result| %>
+      <div class="col-xs-12 col-sm-4 col-md-2">
+        <%= link_to result do %>
+        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+        url('<%= cl_image_path result.photo.path, height: 500, width: 500 %>')">
+        <div class="card-description">
+          <h2><%= result.name %></h2>
+          <p><%= result.price %> €/per day</p>
+        </div>
       </div>
-    </div>
-    <% end %>
-    </div>
-<% end %>
+      <% end %>
+      </div>
+  <% end %>
+</div>
 
 
 <% else %>
