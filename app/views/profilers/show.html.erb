@@ -1,34 +1,37 @@
 <h1 style="margin-left: 25px">Welcome to your Dashboard</h1>
 
-<h4 style="margin-left: 25px"> <%= current_user.email %> </h4>
 <br>
 <br>
 <br>
-
-<h3 style="margin-left: 50px"><strong> Rentals waiting your approval: </strong></h3>
-<% Rental.where(status: "pending").each do |rental| %>
-  <% if rental.game.user.id == current_user.id %>
-    <div class="container">
-      <ul>
-        <li>
-          <% username = User.find(rental.user.id).email  %>
-          <% game_name = Game.find(rental.game.id).name  %>
-
-          <strong> <%= "#{username}" %> </strong> would like to rent <strong> <%= game_name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
-          <br>
-          <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
-          <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
-        </li>
-      </ul>
-    </div>
-  <% end %>
-<% end %>
 
 
 <div class="container">
   <div class="row">
-  <h3><strong>Your currently rented games:</strong></h3>
-  <% current_user.rentals.where(status: "active").each do |rental| %>
+
+    <% unless @pending_rentals.empty? %>
+    <h3 ><strong> Rentals awaiting your approval: </strong></h3>
+    <ul>
+      <% @pending_rentals.each do |rental| %>
+      <li>
+
+        <strong> <%= "#{rental.user.username}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
+        <br>
+        <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
+        <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
+      </li>
+    </ul>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <% unless @current_rentals.empty? %>
+    <h3><strong>Your currently rented games:</strong></h3>
+    <% @current_rentals.each do |rental| %>
     <div class="col-xs-12 col-sm-4 col-md-2">
       <%= link_to game_path(rental.game) do %>
       <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
@@ -40,49 +43,51 @@
       </div>
     </div>
     <% end %>
-    </div>
-  <% end %>
   </div>
+  <% end %>
+  <% end %>
+</div>
 </div>
 
 
 <div class="container" id="">
   <div class="row">
-  <h3><strong>Your games:</strong></h3>
-        <% current_user.games.each do |game| %>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-        <%= link_to game_path(game) do %>
-        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-        url('<%= cl_image_path game.photo.path %>')">
-        <div class="card-description">
-          <h2 class="game-name"><%= game.name %></h2>
-          <p><%= game.price %> €/per day</p>
-        </div>
+    <% unless @user_games.empty? %>
+    <h3><strong>Your games:</strong></h3>
+    <% @user_games.each do |game| %>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <%= link_to game_path(game) do %>
+      <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url('<%= cl_image_path game.photo.path %>')">
+      <div class="card-description">
+        <h2 class="game-name"><%= game.name %></h2>
+        <p><%= game.price %> €/per day</p>
       </div>
-      <% end %>
     </div>
     <% end %>
   </div>
+  <% end %>
+  <% end %>
+</div>
 </div>
 
 <div class="container">
   <div class="row">
+    <% unless @outrented_games.empty? %>
     <h3><strong>games currently rented out:</strong></h3>
-        <% @outrented.each do |game| %>
-        <div class="col-xs-12 col-sm-4 col-md-2">
-        <%= link_to game_path(game) do %>
-        <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-        url('<%= cl_image_path game.photo.path %>')">
-        <div class="card-description">
-          <h2 class="game-name"><%= game.name %></h2>
-          <p><%= game.price %> €/per day</p>
-        </div>
+    <% @outrented_games.each do |game| %>
+    <div class="col-xs-12 col-sm-4 col-md-2">
+      <%= link_to game_path(game) do %>
+      <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url('<%= cl_image_path game.photo.path %>')">
+      <div class="card-description">
+        <h2 class="game-name"><%= game.name %></h2>
+        <p><%= game.price %> €/per day</p>
       </div>
-      <% end %>
     </div>
     <% end %>
   </div>
+  <% end %>
+  <% end %>
 </div>
-
-
-
+</div>
