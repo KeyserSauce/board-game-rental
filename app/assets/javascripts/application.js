@@ -7,6 +7,8 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require moment
+//= require bootstrap-datetimepicker
 
 $(function() {
 
@@ -28,9 +30,6 @@ $(function() {
   });
 
   $('.slick-arrow').addClass('.fa').addClass('fa-arrow-right')
-
-
-  // $('#rental').datepicker();
 
 });
 
