@@ -28,8 +28,8 @@
               <li class="padded">
                 <strong> <%= "#{rental.user.email}" %> </strong> would like to rent <strong> <%= rental.game.name %> </strong> from <%= "#{rental.start_date} to #{rental.end_date}" %>
                 <br>
-                <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch" %>
-                <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch" %>
+                <%= link_to "Approve", rental_path(rental, status: "active"), method: "patch", :class => "btn btn-success" %>
+                <%= link_to "Decline", rental_path(rental, status: "declined"), method: "patch", :class => "btn btn-danger"  %>
               </li>
             <% end %>
           </ul>
