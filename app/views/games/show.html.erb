@@ -18,19 +18,49 @@
       </div>
       <br>
 
-      <%= simple_form_for [@rental] do |f| %>
-
-        <%= f.input          :start_date, as: :string, input_html: { id: "start_date" } %>
-        <%= f.input          :end_date, as: :string, input_html: { id: "end_date" } %>
-        <%= f.hidden_field   :game_id, value: @game.id %>
-        <%= f.hidden_field   :user_id, value: current_user.id %>
-
-        <div class="form-actions" style="border-radius: 2px;">
-          <%= f.button :submit %>
+      <form>
+        <div class="form-group">
+        <h4><strong>Select start date</strong></h4>
+          <input type="text" class="form-control", id="start_date">
         </div>
+        <div class="form-group">
+        <h4><strong>Select end date</strong></h4>
 
-      <% end %>
+          <input type="text" class="form-control", id="end_date">
+        </div>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="modal-button">
+          Book game
+        </button>
+      </form>
 
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Review details</h4>
+      </div>
+      <div class="modal-body">
+        <p>You want to rent <%= @game.name %>, </p>
+        <p>From time X to Y </p>
+        <p>Total price of U </p>
+
+        <%= simple_form_for [@rental] do |f| %>
+
+          <%= f.input          :start_date, as: :hidden, input_html: { id: "modal-start-date" } %>
+          <%= f.input          :end_date, as: :hidden, input_html: { id: "modal-end-date" } %>
+          <%= f.hidden_field   :game_id, value: @game.id %>
+          <%= f.hidden_field   :user_id, value: current_user.id %>
+          <div class="form-actions text-right" style="border-radius: 2px;">
+            <%= f.button :submit, "Confirm" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -42,15 +72,19 @@
     $(document).ready(function () {
 
       $("#start_date").datetimepicker({
-        format: 'MM/DD/YYYY'
+        format: 'DD/MM/YYYY'
       });
 
       $("#end_date").datetimepicker({
-        format: 'MM/DD/YYYY'
+        format: 'DD/MM/YYYY'
       });
 
-      // var start_date = new Date($("#start_date").val());
-      // var end_date = new Date($("#start_date").val());
+      $("#modal-button").click(function () {
+        var start = $("#start_date").val();
+        var end = $("#end_date").val();
+        $("#modal-start-date").val(start);
+        $("#modal-end-date").val(end);
+      });
 
 
     });
