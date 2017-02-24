@@ -9,7 +9,7 @@
 
     <div class="col-xs-12 col-md-3 offset-md-6 rental-box">
       <div class="row">
-        <div class="col-md-8 rental-box-top rental-box-top-price">
+        <div class="col-md-8 rental-box-top rental-box-top-price" id="game-price-per-day" data-price="<%= @game.price %>">
           $ <%= @game.price %>
         </div>
         <div class="col-md-4 rental-box-top" style="padding: 15.5px;">
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade text-center" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -47,8 +47,8 @@
       </div>
       <div class="modal-body">
         <p>You want to rent <%= @game.name %>, </p>
-        <p>From time X to Y </p>
-        <p>Total price of U </p>
+        <p>From the <span id="modal-start"> </span>, to the <span id="modal-end"> </span> </p>
+        <p>For a total price of <span id="modal-price"> </span>$ </p>
 
         <%= simple_form_for [@rental] do |f| %>
 
@@ -56,8 +56,8 @@
           <%= f.input          :end_date, as: :hidden, input_html: { id: "modal-end-date" } %>
           <%= f.hidden_field   :game_id, value: @game.id %>
           <%= f.hidden_field   :user_id, value: current_user.id %>
-          <div class="form-actions text-right" style="border-radius: 2px;">
-            <%= f.button :submit, "Confirm" %>
+          <div class="form-actions text-center" style="border-radius: 2px;">
+            <%= f.button :submit, "Confirm", :class => "btn-success" %>
           </div>
         <% end %>
       </div>
@@ -72,11 +72,11 @@
     $(document).ready(function () {
 
       $("#start_date").datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'MM/DD/YYYY'
       });
 
       $("#end_date").datetimepicker({
-        format: 'DD/MM/YYYY'
+        format: 'MM/DD/YYYY'
       });
 
       $("#modal-button").click(function () {
@@ -84,6 +84,15 @@
         var end = $("#end_date").val();
         $("#modal-start-date").val(start);
         $("#modal-end-date").val(end);
+        $("#modal-start").html(start);
+        $("#modal-end").html(end);
+        // calculate price based on number of days
+        var date1 = new Date(start);
+        var date2 = new Date(end);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        var ppd = $("#game-price-per-day").data("price")
+        $("#modal-price").html(diffDays*ppd);
       });
 
 
