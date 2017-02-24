@@ -11,6 +11,11 @@ class GamesController < ApplicationController
   def create
     @game             = Game.new(game_params)
     @game.name        = @game.name.capitalize
+    if game_params[:photo].empty? && get_photo_url(game_params[:name])
+      @game.photo_url = get_photo_url(game_params[:name])
+    else
+      @game.photo_url = "https://www.placecage.com/c/150/175"
+    end
     @game.user        = current_user
     @game.description = get_description(game_params[:url])
 
@@ -40,6 +45,12 @@ class GamesController < ApplicationController
     @games = Game.all
   end
 
+  def get_photo_url(name)
+    name = name.strip.gsub(" ","+")
+    results = Nokogiri::HTML(open("https://www.google.dk/search?q=#{name}+game&rlz=1C5CHFA_enUS720US721&espv=2&biw=1280&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiHr_nZz6jSAhXH0hoKHRMOAqwQ_AUICCgB&bih=652"))
+    url = results.css('a')[35].children[0]["src"]
+  end
+
   private
 
   def set_game
@@ -55,5 +66,7 @@ class GamesController < ApplicationController
     description ||= doc.css('p')[0].text.gsub(/\[.\]/,"") + doc.css('p')[1].text.gsub(/\[.\]/,"")
     description
   end
+
+
 
 end
