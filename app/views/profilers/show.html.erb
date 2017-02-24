@@ -36,74 +36,12 @@
         </div>
       <% end %>
 
-      <div class="panel space-4 profile-card">
-        <% unless @current_rentals.empty? %>
-          <div class="panel-header">
-            Your currently rented games
-          </div>
-          <div class="panel-body">
-            <% @current_rentals.each do |rental| %>
-              <div class="col-md-4 margined">
-                <%= link_to game_path(rental.game) do %>
-                  <div class="card-index" style="background-image: url('<%= cl_image_path rental.game.photo.path %>')">
-                  </div>
-                  <div>
-                    <p> <strong> <%= rental.game.name %> </strong> - $<%= rental.game.price %> per day </p>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'rental_game_show.html.erb', games: @current_rentals, header: "Your currently rented games" %>
 
-      <div class="panel space-4 profile-card">
-        <% unless @user_games.empty? %>
-          <div class="panel-header">
-            Your games
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <% @user_games.each do |game| %>
-                <div class="col-md-3">
-                  <%= link_to game_path(game) do %>
-                    <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path game.photo.path %>')">
-                      <div class="card-description">
-                        <h2 class="game-name"><%= game.name %></h2>
-                        <p><%= game.price %> €/per day</p>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'game_show.html.erb', games: @user_games, header: "Your games" %>
 
-      <div class="panel space-4 profile-card">
-        <% unless @outrented_games.empty? %>
-          <div class="panel-header">
-            Your games currently rented out
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <% @outrented_games.each do |game| %>
-                <div class="col-md-3">
-                  <%= link_to game_path(game) do %>
-                    <div class="card-index" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path game.photo.path %>')">
-                      <div class="card-description">
-                        <h2 class="game-name"><%= game.name %></h2>
-                        <p><%= game.price %> €/per day</p>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render 'game_show.html.erb', games: @outrented_games, header: "Your games out for rent" %>
+
     </div>
   </div>
 </div>
