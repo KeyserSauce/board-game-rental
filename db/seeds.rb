@@ -85,28 +85,26 @@ games = [
 ]
 
 
-
-
 def get_photo_url(name)
   name = name.strip.gsub(" ","+")
   results = Nokogiri::HTML(open("https://www.google.dk/search?q=#{name}+game&rlz=1C5CHFA_enUS720US721&espv=2&biw=1280&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiHr_nZz6jSAhXH0hoKHRMOAqwQ_AUICCgB&bih=652"))
   url = results.css('a')[35].children[0]["src"]
 end
 
-# Create users
-# 20.times do
-#   user                    = User.new
-#   user.email              = Faker::Internet.email
-#   user.password           = Faker::Internet.password.to_s
-#   user.save!
-# end
+Create users
+20.times do
+  user                    = User.new
+  user.email              = Faker::Internet.email
+  user.password           = Faker::Internet.password.to_s
+  user.save!
+end
 
 # Create games
-games.first(10).each do |g|
+games.each do |g|
   puts games
   game                    = Game.new
   game.name               = g
-  game.user               = User.find(216) #User.order("RANDOM()").first
+  game.user               = User.order("RANDOM()").first
   game.description        = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae libero ac arcu consequat feugiat. Cras justo ipsum, egestas at volutpat in, fermentum sed est. Cras dolor lacus, vestibulum sit amet malesuada in, viverra sit amet sapien. Morbi non augue volutpat, tempor erat et, rhoncus lorem. Aenean efficitur sollicitudin libero sit amet pellentesque. Nunc sollicitudin risus at mauris imperdiet commodo. Nullam imperdiet dictum sem, quis elementum quam. Duis euismod tristique magna scelerisque tempus. Donec ligula diam, varius at eleifend venenatis, venenatis ut nisi. Morbi cursus nulla vitae lacinia iaculis. Aliquam pharetra quis elit nec faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean vitae mauris vitae odio molestie dapibus et eget metus."
   game.category           = ["family", "card", "german", "children", "drinking", "group"].sample
   game.photo_url          = get_photo_url(g)
@@ -119,7 +117,7 @@ end
   rental                  = Rental.new
   rental.start_date       = Date.today
   rental.end_date         = Date.today
-  rental.user_id          = 216  #User.order("RANDOM()").first.id
+  rental.user_id          = User.order("RANDOM()").first.id
   rental.game_id          = Game.order("RANDOM()").first.id
   rental.save!
 end

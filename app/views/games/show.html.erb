@@ -55,16 +55,20 @@
           <%= f.input          :start_date, as: :hidden, input_html: { id: "modal-start-date" } %>
           <%= f.input          :end_date, as: :hidden, input_html: { id: "modal-end-date" } %>
           <%= f.hidden_field   :game_id, value: @game.id %>
-          <%= f.hidden_field   :user_id, value: current_user.id %>
-          <div class="form-actions text-center" style="border-radius: 2px;">
-            <%= f.button :submit, "Confirm", :class => "btn-success" %>
-          </div>
+          <%= f.hidden_field   :user_id, value: current_user.id if user_signed_in? %>
+          <% if user_signed_in? %>
+            <div class="form-actions text-center" style="border-radius: 2px;" id="submit-button">
+             <%= f.button :submit, "Confirm", :class => "btn-success" %>
+            </div>
+          <% else %>
+            <strong> <%= link_to "Sign in to continue", new_user_session_path %> </strong>
+          <% end %>
+
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
 
 <% content_for(:after_js) do %>
 
