@@ -1,0 +1,20 @@
+<div class="panel space-4 profile-card">
+  <% unless games.empty? %>
+    <div class="panel-header">
+      <strong> <%= header %> </strong>
+    </div>
+    <div class="panel-body">
+      <% games.each do |game| %>
+        <div class="col-md-4 margined">
+          <%= link_to game_path(game) do %>
+            <div class="card-index" style="background-image: url('<%= cl_image_path game.photo.path %>')">
+            </div>
+            <div>
+              <p> <strong> <%= game.name %> </strong> </p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
